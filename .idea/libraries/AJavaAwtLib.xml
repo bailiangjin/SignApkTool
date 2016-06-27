@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AJavaAwtLib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/AJavaAwtLib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
