@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="SignApkTool:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/SignApkTool_jar</output-path>
-    <root id="archive" name="SignApkTool.jar">
-      <element id="module-output" name="SignApkTool" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/AJavaAwtLib.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
