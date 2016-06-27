@@ -14,6 +14,8 @@ public class CmdUtils {
     public static void main(String[] args) {
         String cmd = "ping www.baidu.com";
 //        String cmd = "java -version";
+
+
         runCmd(cmd);
     }
 
@@ -31,8 +33,12 @@ public class CmdUtils {
                 String[] e = new String[]{"/bin/sh", "-c", cmd};
                 process = run.exec(e);
             }else if(osName.toLowerCase().contains("windows")){
-                String[] e = new String[]{ "cmd /c cmd.exe/c",cmd};
-                process = run.exec(e);
+               String signCmd="@echo off\r\n"+cmd;
+                String cmdBatFileName="signCmd.bat";
+                FileUtils.saveStringToFile(cmdBatFileName,signCmd,false);
+                File cmdBatFile= new File(cmdBatFileName);
+                String cmdForWindows = "cmd /c start " +cmdBatFile.getAbsolutePath();// pass
+                process = run.exec(cmdForWindows);
             }else {
                 return;
             }

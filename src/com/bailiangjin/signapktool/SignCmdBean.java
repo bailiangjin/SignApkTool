@@ -1,5 +1,6 @@
 package com.bailiangjin.signapktool;
 
+import com.kevin.javabaselib.utils.FileUtils;
 import com.kevin.javabaselib.utils.StringUtils;
 /**
  * 签名命令行
@@ -10,7 +11,7 @@ public class SignCmdBean {
     //echo 000000 | jarsigner -verbose -keystore innerload.jks -signedjar apk_signed.apk apk_unsign.apk alias
 
     private String pwdPrefix="echo ";
-    private String prefix=" | jarsigner -verbose -keystore ";
+    private String prefix="|jarsigner -verbose -keystore ";
     private String keyFilePath;
     private String middleString=" -signedjar ";
     private String signedApkPath;
@@ -83,6 +84,7 @@ public class SignCmdBean {
             System.out.println("param not uncompleted:"+signCmd);
             return null;
         }
+
         System.out.println("signCmd:"+signCmd);
         return signCmd;
     }
