@@ -12,7 +12,8 @@ public class CmdUtils {
     }
 
     public static void main(String[] args) {
-        String cmd = "ping www.baidu.com";
+//        String cmd = "ping www.baidu.com";
+        String cmd = "java -version";
         runCmd(cmd);
     }
 
@@ -22,12 +23,16 @@ public class CmdUtils {
         try {
             Process process;
             String osName = System.getProperties().getProperty("os.name");
+            System.out.println("osName:"+osName);
             if(osName.toLowerCase().contains("mac")){
                 String[] e = new String[]{"/bin/sh", "-c", cmd};
                 process = run.exec(e);
+            }else if(osName.toLowerCase().contains("windows")){
+//                String[] e = new String[]{ "cmd /c cmd.exe/c",cmd};
+                String e =cmd;
+                process = run.exec(e);
             }else {
-                String[] e = new String[]{"@echo", cmd};
-                process = run.exec(cmd);
+                return;
             }
 
             BufferedInputStream bufferedInputStream = new BufferedInputStream(process.getInputStream());
