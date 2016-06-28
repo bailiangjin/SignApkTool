@@ -15,8 +15,8 @@ public class CmdUtils {
     }
 
     public static void main(String[] args) {
-        String cmd = "ping www.baidu.com";
-//        String cmd = "java -version";
+//        String cmd = "ping www.baidu.com";
+        String cmd = "notepad";
 
 
         runCmd(cmd);
@@ -28,21 +28,22 @@ public class CmdUtils {
         try {
             Process process;
             String osName = System.getProperties().getProperty("os.name");
-            System.out.println("osName:"+osName);
-            if (null==osName){
+            System.out.println("osName:" + osName);
+            if (null == osName) {
                 return;
             }
-            if(osName.toLowerCase().contains("mac")){
+            if (osName.toLowerCase().contains("mac")) {
                 String[] e = new String[]{"/bin/sh", "-c", cmd};
                 process = run.exec(e);
-            }else if(osName.toLowerCase().contains("windows")){
-               String signCmd="@echo off\r\n"+cmd;
-                String cmdBatFileName="signCmd.bat";
-                FileUtils.saveStringToFile(cmdBatFileName,signCmd,false);
-                File cmdBatFile= new File(cmdBatFileName);
-                String cmdForWindows = "cmd /c start " +cmdBatFile.getAbsolutePath();// pass
+            } else if (osName.toLowerCase().contains("windows")) {
+                String signCmd = "@echo off\r\n" + cmd;
+                String cmdBatFileName = "cmd.bat";
+                FileUtils.saveStringToFile(cmdBatFileName, signCmd, false);
+                File cmdBatFile = new File(cmdBatFileName);
+                //String cmdForWindows = "cmd /c start " + cmdBatFile.getAbsolutePath();
+                String cmdForWindows =  cmdBatFile.getAbsolutePath();
                 process = run.exec(cmdForWindows);
-            }else {
+            } else {
                 return;
             }
 
@@ -50,11 +51,11 @@ public class CmdUtils {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(bufferedInputStream));
 
             String lineStr;
-            while((lineStr = bufferedReader.readLine()) != null) {
+            while ((lineStr = bufferedReader.readLine()) != null) {
                 System.out.println(lineStr);
             }
 
-            if(process.waitFor() != 0 && process.exitValue() == 1) {
+            if (process.waitFor() != 0 && process.exitValue() == 1) {
                 System.err.println("命令执行失败!");
             }
 
