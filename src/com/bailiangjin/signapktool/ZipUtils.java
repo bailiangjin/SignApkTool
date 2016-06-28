@@ -58,6 +58,8 @@ public class ZipUtils {
         }
     }
 
+
+
     /**
      * 对文件或文件目录进行压缩
      *
@@ -66,9 +68,10 @@ public class ZipUtils {
      * @param zipFileName 压缩文件名
      * @throws Exception
      */
-    public static void zip(String srcPath, String zipPath, String zipFileName) throws Exception {
+    public static String zip(String srcPath, String zipPath, String zipFileName) throws Exception {
         if (StringUtils.isEmpty(srcPath) || StringUtils.isEmpty(zipPath) || StringUtils.isEmpty(zipFileName)) {
 //            throw new ParameterException(ICommonResultCode.PARAMETER_IS_NULL);
+            return null;
         }
         CheckedOutputStream cos = null;
         ZipOutputStream zos = null;
@@ -111,8 +114,10 @@ public class ZipUtils {
             //调用递归压缩方法进行目录或文件压缩
             zip(srcRootDir, srcFile, zos);
             zos.flush();
+            return zipFile.getAbsolutePath();
         } catch (Exception e) {
-            throw e;
+//            throw e;
+//            return null;
         } finally {
             try {
                 if (zos != null) {
@@ -122,6 +127,8 @@ public class ZipUtils {
                 e.printStackTrace();
             }
         }
+
+        return null;
     }
 
     /**

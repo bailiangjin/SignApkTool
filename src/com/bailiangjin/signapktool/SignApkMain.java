@@ -111,9 +111,11 @@ public class SignApkMain extends JFrame {
                         signedApkPath = textField_signed.getText() + File.separator + "signedApk.apk";
                         alias = textField_alias.getText();
                         SignCmdBean signCmdBean = new SignCmdBean(password, keyFilePath, signedApkPath, unsignedApkFilePath, alias);
-                        //执行签名命令
-                        signCmdBean.executeSign();
-
+                        boolean deleteSuccess=signCmdBean.deleteSign();
+                        if(deleteSuccess){
+                            //执行签名命令
+                            signCmdBean.executeSign();
+                        }
                         // 退出 关闭窗口界面
                         System.exit(0);
                     }

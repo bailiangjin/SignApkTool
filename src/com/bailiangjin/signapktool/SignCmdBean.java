@@ -1,5 +1,6 @@
 package com.bailiangjin.signapktool;
 
+import com.bailiangjin.javabaselib.utils.FileUtils;
 import com.bailiangjin.javabaselib.utils.StringUtils;
 import com.bailiangjin.javabaselib.utils.cmd.CmdUtils;
 
@@ -92,26 +93,33 @@ public class SignCmdBean {
         return signCmd;
     }
 
-    public void deleteSign(){
+    public boolean deleteSign(){
 
         if (StringUtils.isEmpty(unsignedApkFilePath)){
-            return;
+            return false ;
         }
+        File unSignedApkFile= new File(unsignedApkFilePath);
+        if(!unSignedApkFile.exists()){
+            return false;
+        }
+        try {
+            String unzipFileSuperDir= FileUtils.getFolderName(unsignedApkFilePath);
+            String apkNameNoExtension=FileUtils.getFileNameWithoutExtension(unsignedApkFilePath);
+            String unzipFileDir=unzipFileSuperDir+File.separator+apkNameNoExtension;
+            String newApkName=apkNameNoExtension+"_new.apk";
+            String newApkFilePath=unzipFileSuperDir+File.separator+newApkName;
+            ZipUtils.unzip(unSignedApkFile.getAbsolutePath(), unzipFileDir,false);
+            String deleteDir=unzipFileDir +File.separator+"META-INF";
+            FileUtils.deleteFile(deleteDir);
+            unsignedApkFilePath=ZipUtils.zip(unzipFileDir,unzipFileSuperDir,newApkName);
+            FileUtils.deleteFile(unzipFileDir);
+            FileUtils.deleteFile(newApkFilePath);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
 
-        File unsignApkFile= new File(unsignedApkFilePath);
-        if(!unsignApkFile.exists()){
-            return;
         }
-//        try {
-//            String unzipFilePath=FileUtils.getFolderName(unsignedApkFilePath);
-//            String zipFilePath=FileUtils.getFolderName(unsignedApkFilePath);
-//            ZipUtils.unzip(unsignApkFile.getAbsolutePath(), FileUtils.getFolderName(unsignedApkFilePath),false);
-//            String deleteDir= FileUtils.getFileNameWithoutExtension(unsignedApkFilePath)+File.separator+"META-INF";
-//            FileUtils.deleteFile(deleteDir);
-//            ZipUtils.zip(unzipFilePath,);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
 
     }
