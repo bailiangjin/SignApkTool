@@ -31,7 +31,7 @@ public class SignApkMain extends JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
         final JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(3);
-        frame.setBounds(400, 200, 450, 200);
+        frame.setBounds(400, 200, 600, 250);
         frame.setTitle("Android Apk签名工具——by bailiangjin");
         frame.setLayout(new GridLayout(6, 2));
         final ArrayList list = new ArrayList();
