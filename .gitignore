@@ -7,6 +7,8 @@ bin
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+META-INF
+
 # Package Files #
 #*.jar
 *.war
