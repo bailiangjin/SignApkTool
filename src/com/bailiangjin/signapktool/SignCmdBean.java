@@ -81,8 +81,8 @@ public class SignCmdBean {
 
     public String toCmd() {
         String signCmd=pwdPrefix+password+prefix+keyFilePath+middleString+signedApkPath+" "+ unsignedApkFilePath +" "+alias;
-        if (StringUtils.isEmpty(keyFilePath)|| StringUtils.isEmpty(keyFilePath)|| StringUtils.isEmpty(unsignedApkFilePath)|| StringUtils.isEmpty(signedApkPath)|| StringUtils.isEmpty(alias)){
-            System.out.println("param not uncompleted:"+signCmd);
+        if (StringUtils.isEmpty(password)||StringUtils.isEmpty(keyFilePath)|| StringUtils.isEmpty(keyFilePath)|| StringUtils.isEmpty(unsignedApkFilePath)|| StringUtils.isEmpty(signedApkPath)|| StringUtils.isEmpty(alias)){
+            System.out.println("param uncompleted:"+signCmd);
             return null;
         }
 
