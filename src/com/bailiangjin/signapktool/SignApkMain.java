@@ -63,12 +63,12 @@ public class SignApkMain extends JFrame {
         final JButton btn_cancel = new JButton("取消");
         final JButton btn_sign = new JButton("执行签名");
         ActionListener actionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == btn_cancel) {
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (actionEvent.getSource() == btn_cancel) {
                     System.exit(0);
                 }
 
-                if (e.getSource() == btn_sign) {
+                if (actionEvent.getSource() == btn_sign) {
                     boolean isComplete = true;
                     StringBuffer sb = new StringBuffer();
                     sb.append("<html><body>");
