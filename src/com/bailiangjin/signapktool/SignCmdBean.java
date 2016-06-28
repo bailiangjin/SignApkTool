@@ -3,6 +3,8 @@ package com.bailiangjin.signapktool;
 import com.bailiangjin.javabaselib.utils.StringUtils;
 import com.bailiangjin.javabaselib.utils.cmd.CmdUtils;
 
+import java.io.File;
+
 /**
  * 签名命令行
  * Created by bailiangjin on 16/6/24.
@@ -88,6 +90,30 @@ public class SignCmdBean {
 
         System.out.println("signCmd:"+signCmd);
         return signCmd;
+    }
+
+    public void deleteSign(){
+
+        if (StringUtils.isEmpty(unsignedApkFilePath)){
+            return;
+        }
+
+        File unsignApkFile= new File(unsignedApkFilePath);
+        if(!unsignApkFile.exists()){
+            return;
+        }
+//        try {
+//            String unzipFilePath=FileUtils.getFolderName(unsignedApkFilePath);
+//            String zipFilePath=FileUtils.getFolderName(unsignedApkFilePath);
+//            ZipUtils.unzip(unsignApkFile.getAbsolutePath(), FileUtils.getFolderName(unsignedApkFilePath),false);
+//            String deleteDir= FileUtils.getFileNameWithoutExtension(unsignedApkFilePath)+File.separator+"META-INF";
+//            FileUtils.deleteFile(deleteDir);
+//            ZipUtils.zip(unzipFilePath,);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     /**
