@@ -1,7 +1,8 @@
 package com.bailiangjin.signapktool;
 
-import com.kevin.javabaselib.utils.FileUtils;
-import com.kevin.javabaselib.utils.StringUtils;
+import com.bailiangjin.javabaselib.utils.StringUtils;
+import com.bailiangjin.javabaselib.utils.cmd.CmdUtils;
+
 /**
  * 签名命令行
  * Created by bailiangjin on 16/6/24.

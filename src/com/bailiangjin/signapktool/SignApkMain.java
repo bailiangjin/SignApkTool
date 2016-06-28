@@ -1,9 +1,10 @@
 package com.bailiangjin.signapktool;
 
-import com.kevin.javaawtlib.callback.FilePathCallback;
-import com.kevin.javaawtlib.swing.DefaultValueJTextField;
-import com.kevin.javaawtlib.swing.FileChooseBtn;
-import com.kevin.javabaselib.utils.StringUtils;
+
+import com.bailiangjin.javaawtlib.callback.FilePathCallback;
+import com.bailiangjin.javaawtlib.swing.DefaultValueJTextField;
+import com.bailiangjin.javaawtlib.swing.FileChooseBtn;
+import com.bailiangjin.javabaselib.utils.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,7 +88,6 @@ public class SignApkMain extends JFrame {
                         sb.append("密码:未设置");
                         isComplete = false;
                     }
-
                     sb.append("</body></html>");
                     if (!isComplete) {
                         final JDialog dialog1 = new JDialog(frame, "提示");
@@ -114,6 +114,7 @@ public class SignApkMain extends JFrame {
                         signedApkPath = textField_signed.getText()+ File.separator+"signedApk.apk";
                         alias = textField_alias.getText();
                         SignCmdBean signCmdBean = new SignCmdBean(password, keyFilePath, signedApkPath, unsignedApkFilePath, alias);
+                        //执行签名命令
                         signCmdBean.executeSign();
 
                         // 退出 关闭窗口界面
