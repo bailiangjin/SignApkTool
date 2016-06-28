@@ -63,8 +63,8 @@ public class CmdUtils {
 
             bufferedReader.close();
             bufferedInputStream.close();
-        } catch (Exception var7) {
-            var7.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
