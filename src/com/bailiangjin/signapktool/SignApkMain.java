@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by bailiangjin on 16/6/25.
@@ -35,7 +34,7 @@ public class SignApkMain extends JFrame {
         frame.setBounds(400, 200, 600, 250);
         frame.setTitle("Android Apk签名工具——by bailiangjin");
         frame.setLayout(new GridLayout(6, 2));
-        final ArrayList list = new ArrayList();
+        final ArrayList<DefaultValueJTextField> list = new ArrayList<DefaultValueJTextField>();
         final DefaultValueJTextField textField_unSignApk = new DefaultValueJTextField("未签名Apk文件路径", 1000);
         final DefaultValueJTextField textField_keyStore = new DefaultValueJTextField("签名key路径", 1000);
         final DefaultValueJTextField textField_signed = new DefaultValueJTextField("签名后Apk输出路径", 1000);
@@ -73,13 +72,11 @@ public class SignApkMain extends JFrame {
                     boolean isComplete = true;
                     StringBuffer sb = new StringBuffer();
                     sb.append("<html><body>");
-                    Iterator dialog = list.iterator();
 
-                    while (dialog.hasNext()) {
-                        DefaultValueJTextField labelContent = (DefaultValueJTextField) dialog.next();
-                        if (labelContent.isDefaultValue()) {
-                            String jbtn = labelContent.getDefaultValue() + ":未设置值" + "<br>";
-                            sb.append(jbtn);
+                    for (DefaultValueJTextField textField : list) {
+                        if (textField.isDefaultValue()) {
+                            String notice = textField.getDefaultValue() + ":未设置值" + "<br>";
+                            sb.append(notice);
                             isComplete = false;
                         }
                     }
@@ -111,7 +108,7 @@ public class SignApkMain extends JFrame {
                         password = passwordField.getText();
                         keyFilePath = textField_keyStore.getText();
                         unsignedApkFilePath = textField_unSignApk.getText();
-                        signedApkPath = textField_signed.getText()+ File.separator+"signedApk.apk";
+                        signedApkPath = textField_signed.getText() + File.separator + "signedApk.apk";
                         alias = textField_alias.getText();
                         SignCmdBean signCmdBean = new SignCmdBean(password, keyFilePath, signedApkPath, unsignedApkFilePath, alias);
                         //执行签名命令
