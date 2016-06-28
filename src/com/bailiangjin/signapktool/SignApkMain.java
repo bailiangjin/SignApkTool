@@ -34,7 +34,7 @@ public class SignApkMain extends JFrame {
         frame.setBounds(400, 200, 600, 250);
         frame.setTitle("Android Apk签名工具——by bailiangjin");
         frame.setLayout(new GridLayout(6, 2));
-        final ArrayList<DefaultValueJTextField> list = new ArrayList<DefaultValueJTextField>();
+        final ArrayList<DefaultValueJTextField> textFieldList = new ArrayList<DefaultValueJTextField>();
         final DefaultValueJTextField textField_unSignApk = new DefaultValueJTextField("未签名Apk文件路径", 1000);
         final DefaultValueJTextField textField_keyStore = new DefaultValueJTextField("签名key路径", 1000);
         final DefaultValueJTextField textField_signed = new DefaultValueJTextField("签名后Apk输出路径", 1000);
@@ -73,7 +73,7 @@ public class SignApkMain extends JFrame {
                     StringBuffer sb = new StringBuffer();
                     sb.append("<html><body>");
 
-                    for (DefaultValueJTextField textField : list) {
+                    for (DefaultValueJTextField textField : textFieldList) {
                         if (textField.isDefaultValue()) {
                             String notice = textField.getDefaultValue() + ":未设置值" + "<br>";
                             sb.append(notice);
@@ -121,10 +121,10 @@ public class SignApkMain extends JFrame {
 
             }
         };
-        list.add(textField_unSignApk);
-        list.add(textField_keyStore);
-        list.add(textField_signed);
-        list.add(textField_alias);
+        textFieldList.add(textField_unSignApk);
+        textFieldList.add(textField_keyStore);
+        textFieldList.add(textField_signed);
+        textFieldList.add(textField_alias);
         btn_cancel.addActionListener(actionListener);
         btn_sign.addActionListener(actionListener);
         frame.add(textField_unSignApk);
