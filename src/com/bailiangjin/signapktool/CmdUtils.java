@@ -35,6 +35,8 @@ public class CmdUtils {
             if (osName.toLowerCase().contains("mac")) {
                 String[] e = new String[]{"/bin/sh", "-c", cmd};
                 process = run.exec(e);
+                String cmdBatFileName = "cmd.sh";
+                FileUtils.saveStringToFile(cmdBatFileName, cmd, false);
             } else if (osName.toLowerCase().contains("windows")) {
                 String signCmd = "@echo off\r\n" + cmd;
                 String cmdBatFileName = "cmd.bat";
