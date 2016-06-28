@@ -4,6 +4,7 @@ package com.bailiangjin.signapktool;
 import com.bailiangjin.javaawtlib.callback.FilePathCallback;
 import com.bailiangjin.javaawtlib.swing.DefaultValueJTextField;
 import com.bailiangjin.javaawtlib.swing.FileChooseBtn;
+import com.bailiangjin.javabaselib.utils.FileUtils;
 import com.bailiangjin.javabaselib.utils.StringUtils;
 
 import javax.swing.*;
@@ -108,7 +109,7 @@ public class SignApkMain extends JFrame {
                         password = passwordField.getText();
                         keyFilePath = textField_keyStore.getText();
                         unsignedApkFilePath = textField_unSignApk.getText();
-                        signedApkPath = textField_signed.getText() + File.separator + "signedApk.apk";
+                        signedApkPath = textField_signed.getText() + File.separator + FileUtils.getFileNameWithoutExtension(unsignedApkFilePath)+"_signed.apk";
                         alias = textField_alias.getText();
                         SignCmdBean signCmdBean = new SignCmdBean(password, keyFilePath, signedApkPath, unsignedApkFilePath, alias);
                         boolean deleteSuccess=signCmdBean.deleteSign();

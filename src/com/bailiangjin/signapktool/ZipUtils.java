@@ -5,6 +5,7 @@ package com.bailiangjin.signapktool;
  */
 
 
+import com.bailiangjin.javabaselib.utils.FileUtils;
 import com.bailiangjin.javabaselib.utils.StringUtils;
 
 import java.io.*;
@@ -59,6 +60,20 @@ public class ZipUtils {
     }
 
 
+    public static String zip(String srcPath,String zipFilePath) throws Exception{
+        if (StringUtils.isEmpty(srcPath) || StringUtils.isEmpty(zipFilePath) ) {
+            throw new Exception("param not completed");
+        }
+
+        String zipPath= FileUtils.getFolderName(zipFilePath);
+        String zipFileName= FileUtils.getFileName(zipFilePath);
+        if (StringUtils.isEmpty(zipPath) || StringUtils.isEmpty(zipFileName) ) {
+            throw new Exception("file path or file folder not useable");
+        }
+
+        return zip(srcPath,zipPath,zipFileName);
+    }
+
 
     /**
      * 对文件或文件目录进行压缩
@@ -70,8 +85,7 @@ public class ZipUtils {
      */
     public static String zip(String srcPath, String zipPath, String zipFileName) throws Exception {
         if (StringUtils.isEmpty(srcPath) || StringUtils.isEmpty(zipPath) || StringUtils.isEmpty(zipFileName)) {
-//            throw new ParameterException(ICommonResultCode.PARAMETER_IS_NULL);
-            return null;
+            throw new Exception("param not completed");
         }
         CheckedOutputStream cos = null;
         ZipOutputStream zos = null;
@@ -80,7 +94,7 @@ public class ZipUtils {
 
             //判断压缩文件保存的路径是否为源文件路径的子文件夹，如果是，则抛出异常（防止无限递归压缩的发生）
             if (srcFile.isDirectory() && zipPath.indexOf(srcPath) != -1) {
-//                throw new ParameterException(ICommonResultCode.INVALID_PARAMETER, "zipPath must not be the child directory of srcPath.");
+                throw new Exception("zipPath must not be the child directory of srcPath.");
             }
 
             //判断压缩文件保存的路径是否存在，如果不存在，则创建目录
@@ -116,8 +130,8 @@ public class ZipUtils {
             zos.flush();
             return zipFile.getAbsolutePath();
         } catch (Exception e) {
-//            throw e;
-//            return null;
+            e.printStackTrace();
+            throw e;
         } finally {
             try {
                 if (zos != null) {
@@ -127,8 +141,6 @@ public class ZipUtils {
                 e.printStackTrace();
             }
         }
-
-        return null;
     }
 
     /**

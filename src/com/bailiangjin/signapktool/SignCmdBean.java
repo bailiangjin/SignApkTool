@@ -106,14 +106,22 @@ public class SignCmdBean {
             String unzipFileSuperDir= FileUtils.getFolderName(unsignedApkFilePath);
             String apkNameNoExtension=FileUtils.getFileNameWithoutExtension(unsignedApkFilePath);
             String unzipFileDir=unzipFileSuperDir+File.separator+apkNameNoExtension;
-            String newApkName=apkNameNoExtension+"_new.apk";
+            String newApkName=apkNameNoExtension+"_unSigned.apk";
             String newApkFilePath=unzipFileSuperDir+File.separator+newApkName;
             ZipUtils.unzip(unSignedApkFile.getAbsolutePath(), unzipFileDir,false);
-            String deleteDir=unzipFileDir +File.separator+"META-INF";
-            FileUtils.deleteFile(deleteDir);
-            unsignedApkFilePath=ZipUtils.zip(unzipFileDir,unzipFileSuperDir,newApkName);
-            FileUtils.deleteFile(unzipFileDir);
-            FileUtils.deleteFile(newApkFilePath);
+            String signFolderDir=unzipFileDir +File.separator+"META-INF";
+            File  signFileFolder=new File(signFolderDir);
+            if (null==signFileFolder||!signFileFolder.exists()){
+                //原apk文件为无签名apk 直接使用原文件
+            }else{
+                //删除签名目录
+                FileUtils.deleteFile(signFolderDir);
+                //压缩去签名的文件为 原文件加"_unSigned.apk"
+                unsignedApkFilePath=ZipUtils.zip(unzipFileDir,newApkFilePath);
+                //删除解压的dir
+                FileUtils.deleteFile(unzipFileDir);
+            }
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
