@@ -88,23 +88,23 @@ public class SignApkMain extends JFrame {
                     }
                     sb.append("</body></html>");
                     if (!isComplete) {
-                        final JDialog dialog1 = new JDialog(frame, "提示");
-                        dialog1.setBounds(100, 100, 200, 200);
+                        final JDialog noticeDialog = new JDialog(frame, "提示");
+                        noticeDialog.setBounds(100, 100, 200, 200);
                         JLabel labelContent1 = new JLabel("", 0);
                         labelContent1.setText(sb.toString());
-                        dialog1.add(labelContent1);
-                        JButton jbtn1 = new JButton("确定");
-                        jbtn1.addActionListener(new ActionListener() {
+                        noticeDialog.add(labelContent1);
+                        JButton btnConfirm = new JButton("确定");
+                        btnConfirm.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
-                                dialog1.hide();
+                                noticeDialog.hide();
                             }
                         });
                         JPanel pan = new JPanel();
                         pan.setLayout(new FlowLayout());
                         pan.add(labelContent1);
-                        pan.add(jbtn1);
-                        dialog1.add(pan);
-                        dialog1.show();
+                        pan.add(btnConfirm);
+                        noticeDialog.add(pan);
+                        noticeDialog.show();
                     } else {
                         password = passwordField.getText();
                         keyFilePath = textField_keyStore.getText();
