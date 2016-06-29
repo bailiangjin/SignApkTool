@@ -90,7 +90,7 @@ public class SignApkMain extends JFrame {
                     if (!isComplete) {
                         final JDialog dialog1 = new JDialog(frame, "提示");
                         dialog1.setBounds(100, 100, 200, 200);
-                        JLabel labelContent1 = new JLabel("Alias:", 0);
+                        JLabel labelContent1 = new JLabel("", 0);
                         labelContent1.setText(sb.toString());
                         dialog1.add(labelContent1);
                         JButton jbtn1 = new JButton("确定");
