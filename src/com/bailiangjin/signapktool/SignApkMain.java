@@ -59,7 +59,7 @@ public class SignApkMain extends JFrame {
         });
         JLabel label1 = new JLabel("Alias:", 0);
         JLabel label2 = new JLabel("password:", 0);
-        DefaultValueJTextField textField_alias = new DefaultValueJTextField("请输入Alias", 1000);
+        final DefaultValueJTextField textField_alias = new DefaultValueJTextField("请输入Alias", 1000);
         final JPasswordField passwordField = new JPasswordField();
         final JButton btn_cancel = new JButton("取消");
         final JButton btn_sign = new JButton("执行签名");
